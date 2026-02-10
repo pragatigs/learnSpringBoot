@@ -1,0 +1,16 @@
+package com.ecommerce.shopify.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderRequest {
+    private String product;
+    private double price;
+    private String orderId;
+}
