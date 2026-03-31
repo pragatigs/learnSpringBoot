@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: {{ .Values.app.name }}
+    namespace: {{ .Release.Namespace }}
+spec:
+    replicas: {{ .Values.app.replicaCount }}
+    selector:
+        matchLabels:
+            app: {{ .Values.app.name }}
+    template:
+        metadata:
+            labels:
+                app: {{ .Values.app.name }}
+        spec:
+            containers:
+                - name: spring-app
+                  image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+                  imagePullPolicy: "{{ .Values.app.image.pullPolicy }}"
+                  ports:
+                    - containerPort: {{ .Values.app.service.port }}
+                  env:
+                    - name: DB_HOST
+                      value: {{ .Values.app.env.DB_HOST }}
+                    - name: DB_PORT
+                      value: {{ .Values.app.env.DB_PORT | quote}}
+                    - name: DB_NAME
+                      value: {{ .Values.app.env.DB_NAME }}
+                    - name: DB_USER
+                      valueFrom:
+                        secretKeyRef:
+                            name: postgres-secret
+                            key: DB_USER
+
+                    - name: DB_PASSWORD
+                      valueFrom:
+                        secretKeyRef:
+                            name: postgres-secret
+                            key: DB_PASSWORD

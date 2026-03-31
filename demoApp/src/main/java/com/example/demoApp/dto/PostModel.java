@@ -1,7 +1,5 @@
 package com.example.demoApp.dto;
 
-// import org.h2.engine.User;
-
 import com.example.demoApp.entity.UserEntity;
 
 public class PostModel {
@@ -14,12 +12,19 @@ public class PostModel {
 
     }
 
+    public PostModel(String title, String content, UserEntity user){
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
+
     public PostModel(Long id, String title, String content, UserEntity user){
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
     }
+
     public Long getId(){
         return id;
     }
@@ -46,6 +51,10 @@ public class PostModel {
 
     public UserEntity getUser(){
         return user;
+    }
+
+    public void setUser(UserEntity user){
+        this.user = user;
     }
     
 }

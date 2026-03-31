@@ -32,9 +32,9 @@ public class UserController{
         return userService.returnAll();
     }
 
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public String deleteById(@PathVariable Long id){
-        return userService.deleteById(id);
+        return userService.DeleteById(id);
     }
     
 }

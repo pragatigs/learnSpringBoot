@@ -22,9 +22,9 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/{id}")
-    public PostModel createNewPost(@RequestBody PostModel entity, @PathVariable Long id) {
-        PostModel resp = postService.createPost(id, entity.getTitle(), entity.getContent());
+    @PostMapping("/{userId}")
+    public PostModel createNewPost(@RequestBody PostModel entity, @PathVariable Long userId) {
+        PostModel resp = postService.createPost(userId, entity.getTitle(), entity.getContent());
         
         return resp;
     }

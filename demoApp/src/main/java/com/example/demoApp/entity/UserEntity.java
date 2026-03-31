@@ -7,17 +7,17 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
 public class UserEntity{
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -29,8 +29,7 @@ public class UserEntity{
     public UserEntity(){
 
     }
-    public UserEntity(Long id, String name, String email){
-        this.id = id;
+    public UserEntity(String name, String email){
         this.name = name;
         this.email = email;
     }

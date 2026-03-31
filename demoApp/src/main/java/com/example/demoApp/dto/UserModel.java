@@ -1,4 +1,5 @@
 package com.example.demoApp.dto;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -16,6 +17,11 @@ public class UserModel {
     public UserModel(){
 
     }
+    public UserModel(String name, String email){
+        this.name = name;
+        this.email = email;
+    }
+
     public UserModel(Long id, String name, String email){
         this.id = id;
         this.name = name;

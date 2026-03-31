@@ -1,0 +1,59 @@
+app:
+  name: demo-app
+  replicaCount: 1
+
+  image:
+    repository: demo-app
+    tag: "latest"
+    pullPolicy: Never
+
+  service:
+    type: NodePort
+    port: 8000
+  
+  ingress:
+    enabled: true
+    host: demo.local
+  
+  
+  env:
+    DB_HOST: "postgres"
+    DB_PORT: "5432"
+    DB_NAME: "mydb"
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+  
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+postgres:
+  name: postgres
+  replicaCount: 1
+
+  image:
+    repository: postgres
+    tag: "16-alpine"
+    pullPolicy: Never
+
+  service:
+    type: ClusterIP
+    port: 5432
+  
+  auth:
+    username: "postgres"
+    password: "postgres"
+    database: "mydb"
+  
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  

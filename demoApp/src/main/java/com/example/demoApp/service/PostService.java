@@ -6,8 +6,11 @@ import com.example.demoApp.dto.PostModel;
 import com.example.demoApp.entity.PostEntity;
 import com.example.demoApp.entity.UserEntity;
 import com.example.demoApp.exception.UserNotFoundException;
+import com.example.demoApp.mapper.PostMapper;
 import com.example.demoApp.repository.PostRepository;
 import com.example.demoApp.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PostService {
@@ -19,11 +22,13 @@ public class PostService {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
     }
-    public PostModel createPost (Long id, String title, String content){
-        UserEntity user = userRepository.findById(id)
+    @Transactional
+    public PostModel createPost (Long userId, String title, String content){
+        UserEntity user = userRepository.findById(userId)
         .orElseThrow(() -> new UserNotFoundException("User does not exists, create first!"));
 
-        PostEntity newPost = new PostEntity(id, title, content);
+        // PostMapper mapper = new PostMapper();
+        PostEntity newPost = new PostEntity(title, content);
 
         newPost.setUser(user);
        

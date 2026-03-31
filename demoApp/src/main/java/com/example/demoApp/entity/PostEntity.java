@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 // import org.h2.engine.User;
 
 import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @Table(name = "posts")
 public class PostEntity {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String content;
@@ -30,13 +30,9 @@ public class PostEntity {
 
     }
 
-    public PostEntity(Long id, String title, String content){
-        this.id = id;
+    public PostEntity(String title, String content){
         this.title = title;
         this.content = content;
-    }
-    public Long getId(){
-        return id;
     }
 
     public String getTitle(){
@@ -51,8 +47,8 @@ public class PostEntity {
         return user;
     }
 
-    public void setId(Long id){
-        this.id = id;
+    public Long getId(){
+        return id;
     }
 
     public void setTitle(String title){
@@ -67,4 +63,7 @@ public class PostEntity {
         this.user = user;
     }
 
+     public void setId(Long id){
+        this.id = id;
+    }
 }
