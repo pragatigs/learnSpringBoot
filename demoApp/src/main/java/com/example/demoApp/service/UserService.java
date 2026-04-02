@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public List<UserEntity> returnAll(){
-        return userRepository.findAll();
+        return userRepository.findAllWithPosts();
     }
 
     public String DeleteById(Long id){
